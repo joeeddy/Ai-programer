@@ -2,34 +2,54 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>A.I. Programer Source Editor</title>
-<div class="tagline">Cognitive Sovereignty by Design</div>
-
   <style>
     body {
-      background-color: black;
-      color: white;
-      font-family: monospace;
-      padding: 2rem;
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      background-color: #f4f4f4;
     }
+
     h1 {
-      color: cyan;
-      margin-bottom: 0.5rem;
+      color: #333;
     }
+
     .tagline {
       font-style: italic;
-      color: #aaaaaa;
+      color: #777;
       margin-bottom: 2rem;
     }
-    input, textarea {
-      width: 100%;
-      margin-bottom: 1rem;
-      padding: 0.5rem;
-    }
+
     label {
       display: block;
       margin-top: 1rem;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .checkbox {
+      margin-top: 1rem;
+    }
+
+    button {
+      margin-top: 1.5rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      background-color: #007acc;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #005fa3;
     }
   </style>
 </head>
@@ -37,38 +57,39 @@
   <h1>A.I. Programer Source Editor</h1>
   <div class="tagline">Cognitive Sovereignty by Design</div>
 
-  <label for="sourceUrl">Source URL:</label>
-  <input type="text" id="sourceUrl" placeholder="Enter source (e.g. nasa.gov)" />
+  <label for="source-url">Source URL</label>
+  <input type="text" id="source-url" placeholder="Enter the URL of the source" />
 
-  <label for="tags">Tags:</label>
-  <input type="text" id="tags" placeholder="trusted, .gov, verified" />
+  <label for="tags">Tags</label>
+  <input type="text" id="tags" placeholder="Enter tags (comma separated)" />
 
-  <label for="note">Note (optional):</label>
-  <textarea id="note" rows="4" placeholder="Add a note if needed..."></textarea>
+  <label for="note">Optional Note</label>
+  <textarea id="note" placeholder="Leave an optional note here..." rows="4"></textarea>
 
-  <label>
-    <input type="checkbox" id="allowAI" /> Allow A.I. Programer to use this source
-  </label>
+  <div class="checkbox">
+    <input type="checkbox" id="allow-use" />
+    <label for="allow-use">Allow A.I. Programer to use this source</label>
+  </div>
 
   <button onclick="saveSource()">Save</button>
 
-  <script src="engine.js"></script>
   <script>
     function saveSource() {
-      const sourceUrl = document.getElementById("sourceUrl").value;
-      const tags = document.getElementById("tags").value;
-      const note = document.getElementById("note").value;
-      const allow = document.getElementById("allowAI").checked;
+      const url = document.getElementById('source-url').value;
+      const tags = document.getElementById('tags').value;
+      const note = document.getElementById('note').value;
+      const allowed = document.getElementById('allow-use').checked;
 
-      if (!sourceUrl || !allow) {
-        alert("Please enter a source and check the box to allow A.I. Programer access.");
+      if (!url || !allowed) {
+        alert("Please enter a source URL and allow access.");
         return;
       }
 
-      // For now, just simulate saving
-      alert(`✅ A.I. Programer has updated this source: ${sourceUrl}`);
+      // Simulate saving
+      alert(`✅ A.I. Programer has updated this source:\n\n${url}\nTags: ${tags}\nNote: ${note}`);
     }
   </script>
 </body>
 </html>
+
 
