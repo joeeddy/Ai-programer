@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Promethius Source Editor</title>
+  <style>
+    body {
+      background-color: #101010;
+      color: #f2f2f2;
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+    }
+
+    h1 {
+      color: #7be0ff;
+    }
+
+    label {
+      display: block;
+      margin: 1rem 0 0.25rem;
+      font-weight: bold;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 0.75rem;
+      background: #1c1c1c;
+      color: #eee;
+      border: 1px solid #444;
+      border-radius: 4px;
+    }
+
+    input[type="checkbox"] {
+      transform: scale(1.4);
+      margin-right: 0.5rem;
+    }
+
+    button {
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      color: #fff;
+      background-color: #00b894;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #00a383;
+    }
+  </style>
+</head>
+<body>
+  <h1>Promethius Source Editor</h1>
+
+  <label for="source">Source URL or Name:</label>
+  <input type="text" id="source" placeholder="e.g. nasa.gov" />
+
+  <label>
+    <input type="checkbox" id="allowSource" />
+    Allow Promethius to use this source
+  </label>
+
+  <label for="tags">Tags (comma separated):</label>
+  <input type="text" id="tags" placeholder="e.g. high-trust, public-sector" />
+
+  <label for="notes">Notes:</label>
+  <textarea id="notes" rows="4" placeholder="Add any details or context here..."></textarea>
+
+  <button id="saveBtn">💾 Save Source</button>
+
+  <script src="engine.js"></script>
+  <script>
+    const allowCheckbox = document.getElementById("allowSource");
+    const tagsInput = document.getElementById("tags");
+    const notesInput = document.getElementById("notes");
+    const sourceInput = document.getElementById("source");
+    const saveBtn = document.getElementById("saveBtn");
+
+    saveBtn.addEventListener("click", () => {
+      const sourceUrl = sourceInput.value.trim();
+      const tags = tagsInput.value.split(",").map(t => t.trim());
+      const notes = notesInput.value;
+
+      if (!sourceUrl) {
+        alert("⚠️ Please enter a source.");
+        return;
+      }
+
+      if (allowCheckbox.checked) {
+        integrityEngine.allowSource(sourceUrl, tags, notes);
+      } else {
+        integrityEngine.disallowSource(sourceUrl);
+      }
+
+      alert(`✅ Promethius has updated this source: ${sourceUrl}`);
+    });
+  </script>
+</body>
+</html>
