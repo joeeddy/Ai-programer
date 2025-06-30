@@ -4,99 +4,70 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>A.I. Programer Source Editor</title>
+
   <style>
     body {
-      background-color: #101010;
-      color: #f2f2f2;
-      font-family: Arial, sans-serif;
+      background-color: black;
+      color: white;
+      font-family: monospace;
       padding: 2rem;
     }
-
     h1 {
-      color: #7be0ff;
+      color: cyan;
+      margin-bottom: 0.5rem;
     }
-
+    .tagline {
+      font-style: italic;
+      color: #aaaaaa;
+      margin-bottom: 2rem;
+    }
+    input, textarea {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+    }
     label {
       display: block;
-      margin: 1rem 0 0.25rem;
-      font-weight: bold;
-    }
-
-    input[type="text"], textarea {
-      width: 100%;
-      padding: 0.75rem;
-      background: #1c1c1c;
-      color: #eee;
-      border: 1px solid #444;
-      border-radius: 4px;
-    }
-
-    input[type="checkbox"] {
-      transform: scale(1.4);
-      margin-right: 0.5rem;
-    }
-
-    button {
-      margin-top: 2rem;
-      padding: 1rem 2rem;
-      font-size: 1rem;
-      color: #fff;
-      background-color: #00b894;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #00a383;
+      margin-top: 1rem;
     }
   </style>
 </head>
 <body>
-  <h1>Promethius Source Editor</h1>
+  <h1>A.I. Programer Source Editor</h1>
+  <div class="tagline">Cognitive Sovereignty by Design</div>
 
-  <label for="source">Source URL or Name:</label>
-  <input type="text" id="source" placeholder="e.g. nasa.gov" />
+  <label for="sourceUrl">Source URL:</label>
+  <input type="text" id="sourceUrl" placeholder="Enter source (e.g. nasa.gov)" />
+
+  <label for="tags">Tags:</label>
+  <input type="text" id="tags" placeholder="trusted, .gov, verified" />
+
+  <label for="note">Note (optional):</label>
+  <textarea id="note" rows="4" placeholder="Add a note if needed..."></textarea>
 
   <label>
-    <input type="checkbox" id="allowSource" />
-    Allow Promethius to use this source
+    <input type="checkbox" id="allowAI" /> Allow A.I. Programer to use this source
   </label>
 
-  <label for="tags">Tags (comma separated):</label>
-  <input type="text" id="tags" placeholder="e.g. high-trust, public-sector" />
-
-  <label for="notes">Notes:</label>
-  <textarea id="notes" rows="4" placeholder="Add any details or context here..."></textarea>
-
-  <button id="saveBtn">💾 Save Source</button>
+  <button onclick="saveSource()">Save</button>
 
   <script src="engine.js"></script>
   <script>
-    const allowCheckbox = document.getElementById("allowSource");
-    const tagsInput = document.getElementById("tags");
-    const notesInput = document.getElementById("notes");
-    const sourceInput = document.getElementById("source");
-    const saveBtn = document.getElementById("saveBtn");
+    function saveSource() {
+      const sourceUrl = document.getElementById("sourceUrl").value;
+      const tags = document.getElementById("tags").value;
+      const note = document.getElementById("note").value;
+      const allow = document.getElementById("allowAI").checked;
 
-    saveBtn.addEventListener("click", () => {
-      const sourceUrl = sourceInput.value.trim();
-      const tags = tagsInput.value.split(",").map(t => t.trim());
-      const notes = notesInput.value;
-
-      if (!sourceUrl) {
-        alert("⚠️ Please enter a source.");
+      if (!sourceUrl || !allow) {
+        alert("Please enter a source and check the box to allow A.I. Programer access.");
         return;
       }
 
-      if (allowCheckbox.checked) {
-        integrityEngine.allowSource(sourceUrl, tags, notes);
-      } else {
-        integrityEngine.disallowSource(sourceUrl);
-      }
-
-      alert(`✅ Promethius has updated this source: ${sourceUrl}`);
-    });
+      // For now, just simulate saving
+      alert(`✅ A.I. Programer has updated this source: ${sourceUrl}`);
+    }
   </script>
 </body>
 </html>
+
